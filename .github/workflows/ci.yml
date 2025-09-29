@@ -1,0 +1,105 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Run linting
+      run: npm run lint --if-present
+
+    - name: Run type checking
+      run: npm run type-check --if-present
+
+    - name: Run tests
+      run: npm test --if-present
+
+    - name: Build application
+      run: npm run build
+
+    - name: Test build artifacts
+      run: |
+        ls -la dist/
+        [ -f dist/index.html ] && echo "Build successful: index.html found"
+
+  deploy-preview:
+    runs-on: ubuntu-latest
+    needs: build-and-test
+    if: github.event_name == 'pull_request'
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18.x'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Build for preview
+      run: npm run build
+
+    - name: Deploy preview (stub)
+      run: |
+        echo "Preview deployment would happen here"
+        echo "Preview URL: https://preview-${{ github.event.number }}.example.com"
+
+  deploy-production:
+    runs-on: ubuntu-latest
+    needs: build-and-test
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18.x'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Build for production
+      run: npm run build
+      env:
+        VITE_NODE_ENV: production
+
+    - name: Deploy to production (stub)
+      run: |
+        echo "Production deployment would happen here"
+        echo "Production URL: https://doctrine-tracker.example.com"
+
+    - name: Notify deployment
+      run: |
+        echo "Deployment completed successfully"
+        echo "Version: ${{ github.sha }}"
+        echo "Deployed at: $(date -u)"

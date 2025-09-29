@@ -1,0 +1,98 @@
+{
+    "processes": [
+        {
+            "id": "proj-001",
+            "name": "Product Launch Initiative",
+            "description": "End-to-end product launch process with market validation",
+            "steps": [
+                {
+                    "unique_id": "step-001",
+                    "process_id": "proj-001",
+                    "altitude": 30000,
+                    "title": "Define Product Vision",
+                    "description": "Establish clear product vision and strategic objectives",
+                    "status": "completed",
+                    "tool_id": "vision-canvas"
+                },
+                {
+                    "unique_id": "step-002",
+                    "process_id": "proj-001",
+                    "altitude": 30000,
+                    "title": "Market Opportunity Assessment",
+                    "description": "Analyze market size, competition, and opportunity",
+                    "status": "completed",
+                    "table_reference": "market_analysis"
+                },
+                {
+                    "unique_id": "step-003",
+                    "process_id": "proj-001",
+                    "altitude": 20000,
+                    "title": "Resource Planning",
+                    "description": "Plan team allocation and budget requirements",
+                    "status": "in_progress",
+                    "tool_id": "resource-planner"
+                },
+                {
+                    "unique_id": "step-004",
+                    "process_id": "proj-001",
+                    "altitude": 20000,
+                    "title": "Timeline Development",
+                    "description": "Create project timeline with key milestones",
+                    "status": "pending",
+                    "table_reference": "project_timeline"
+                },
+                {
+                    "unique_id": "step-005",
+                    "process_id": "proj-001",
+                    "altitude": 10000,
+                    "title": "Feature Development",
+                    "description": "Implement core product features",
+                    "status": "pending",
+                    "tool_id": "dev-tracker"
+                },
+                {
+                    "unique_id": "step-006",
+                    "process_id": "proj-001",
+                    "altitude": 10000,
+                    "title": "Quality Assurance",
+                    "description": "Execute comprehensive testing protocols",
+                    "status": "pending",
+                    "table_reference": "qa_results"
+                }
+            ]
+        },
+        {
+            "id": "proj-002",
+            "name": "Customer Onboarding Flow",
+            "description": "Streamlined customer onboarding process optimization",
+            "steps": [
+                {
+                    "unique_id": "step-007",
+                    "process_id": "proj-002",
+                    "altitude": 30000,
+                    "title": "Customer Journey Vision",
+                    "description": "Define ideal customer experience and outcomes",
+                    "status": "completed"
+                },
+                {
+                    "unique_id": "step-008",
+                    "process_id": "proj-002",
+                    "altitude": 20000,
+                    "title": "Touchpoint Mapping",
+                    "description": "Map all customer interaction points",
+                    "status": "in_progress",
+                    "tool_id": "journey-mapper"
+                },
+                {
+                    "unique_id": "step-009",
+                    "process_id": "proj-002",
+                    "altitude": 10000,
+                    "title": "Automation Implementation",
+                    "description": "Deploy automated onboarding workflows",
+                    "status": "pending",
+                    "table_reference": "automation_config"
+                }
+            ]
+        }
+    ]
+}

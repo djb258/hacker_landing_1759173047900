@@ -1,0 +1,70 @@
+{
+    "mcp": {
+        "name": "Doctrine Tracker MCP Configuration",
+        "version": "1.0.0",
+        "description": "Model Context Protocol configuration for Doctrine Tracker application",
+        "endpoints": {
+            "primary": {
+                "url": "https://api.example.com/mcp",
+                "apiKey": "${VITE_MCP_API_KEY}",
+                "timeout": 30000,
+                "retries": 3
+            },
+            "fallback": {
+                "url": "https://backup-api.example.com/mcp",
+                "apiKey": "${VITE_MCP_API_KEY}",
+                "timeout": 45000,
+                "retries": 2
+            }
+        },
+        "features": {
+            "processTracking": {
+                "enabled": true,
+                "altitudes": [
+                    30000,
+                    20000,
+                    10000
+                ],
+                "statusTypes": [
+                    "pending",
+                    "in_progress",
+                    "completed",
+                    "failed"
+                ]
+            },
+            "realTimeUpdates": {
+                "enabled": false,
+                "websocketUrl": "wss://api.example.com/ws",
+                "reconnectInterval": 5000
+            },
+            "analytics": {
+                "enabled": false,
+                "trackStepChanges": true,
+                "trackProcessCompletion": true
+            }
+        },
+        "security": {
+            "rateLimiting": {
+                "requestsPerMinute": 100,
+                "burstLimit": 20
+            },
+            "cors": {
+                "allowedOrigins": [
+                    "http://localhost:3000",
+                    "https://yourdomain.com"
+                ],
+                "allowedMethods": [
+                    "GET",
+                    "POST",
+                    "PUT",
+                    "DELETE"
+                ]
+            }
+        },
+        "development": {
+            "mockMode": true,
+            "debugLogging": true,
+            "stubEndpoints": true
+        }
+    }
+}

@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Core Colors */
+    --color-background: #0a0a0a; /* near-black */
+    --color-foreground: #00ff00; /* classic terminal green */
+    --color-border: #00cc00; /* darker green variant */
+    --color-input: #1a1a1a; /* elevated surface */
+    --color-ring: #00ff41; /* brighter green accent */
+    --color-card: #1a1a1a; /* elevated surface */
+    --color-card-foreground: #00ff00; /* classic terminal green */
+    --color-popover: #1a1a1a; /* elevated surface */
+    --color-popover-foreground: #00ff00; /* classic terminal green */
+    --color-muted: #333333; /* muted gray */
+    --color-muted-foreground: #00cc88; /* blue-shifted green */
+    
+    /* Brand Colors */
+    --color-primary: #00ff00; /* classic terminal green */
+    --color-primary-foreground: #0a0a0a; /* near-black */
+    --color-secondary: #00cc00; /* darker green variant */
+    --color-secondary-foreground: #0a0a0a; /* near-black */
+    
+    /* State Colors */
+    --color-destructive: #ff0040; /* bright red with magenta shift */
+    --color-destructive-foreground: #ffffff; /* white */
+    --color-accent: #00ff41; /* brighter green accent */
+    --color-accent-foreground: #0a0a0a; /* near-black */
+    --color-success: #00ff00; /* classic terminal green */
+    --color-success-foreground: #0a0a0a; /* near-black */
+    --color-warning: #ffff00; /* classic terminal yellow */
+    --color-warning-foreground: #0a0a0a; /* near-black */
+    --color-error: #ff0040; /* bright red with magenta shift */
+    --color-error-foreground: #ffffff; /* white */
+    
+    /* Matrix-specific Colors */
+    --color-matrix-rain: #00ff00; /* classic terminal green */
+    --color-matrix-glow: rgba(0, 255, 0, 0.3); /* green glow */
+    --color-terminal-cursor: #00ff41; /* brighter green accent */
+    --color-glitch: #ff0040; /* bright red with magenta shift */
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-mono;
+    font-family: 'Source Code Pro', monospace;
+  }
+
+  /* Terminal-specific animations */
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+
+  @keyframes matrix-rain {
+    0% { transform: translateY(-100vh); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(100vh); opacity: 0; }
+  }
+
+  @keyframes terminal-glow {
+    0%, 100% { box-shadow: 0 0 5px var(--color-matrix-glow); }
+    50% { box-shadow: 0 0 20px var(--color-matrix-glow), 0 0 30px var(--color-matrix-glow); }
+  }
+
+  @keyframes glitch {
+    0% { transform: translateX(0); }
+    20% { transform: translateX(-2px); }
+    40% { transform: translateX(2px); }
+    60% { transform: translateX(-1px); }
+    80% { transform: translateX(1px); }
+    100% { transform: translateX(0); }
+  }
+
+  .terminal-cursor {
+    animation: blink 1s infinite;
+  }
+
+  .matrix-glow {
+    animation: terminal-glow 2s ease-in-out infinite;
+  }
+
+  .glitch-effect {
+    animation: glitch 0.3s ease-in-out;
+  }
+
+  /* Scrollbar styling for terminal aesthetic */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--color-background);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-accent);
+  }
+}
